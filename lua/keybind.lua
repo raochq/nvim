@@ -113,9 +113,9 @@ map("n", "<leader>b", ":NvimTreeToggle<CR>", opt)
 -- bufferline
 -- 左右Tab切换
 map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<C-Left>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<C-Left>", ":bprevious<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
-map("n", "<C-Right>", ":BufferLineCycleNext<CR>", opt)
+map("n", "<C-Right>", ":bnext<CR>", opt)
 -- "moll/vim-bbye" 关闭当前 buffer
 map("n", "<leader>bc", ":bdelete!<CR>", opt)
 map("n", "<C-w>", ":bdelete!<CR>", opt)
@@ -127,11 +127,25 @@ map("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
 -- 关闭选中标签页
 map("n", "<leader>bp", ":BufferLinePickClose<CR>", opt)
 
+local pluginKeys = {}
+-- 代码注释插件
+-- see ./lua/plugin-config/comment.lua
+-- pluginKeys.comment = {
+--   -- Normal 模式快捷键
+--   toggler = {
+--     line = "gcc", -- 行注释
+--     block = "gbc", -- 块注释
+--   },
+--   -- Visual 模式
+--   opleader = {
+--     line = "gc",
+--     bock = "gb",
+--   },
+-- }
 -- ctrl + /
 map("n", "<C-_>", "gcc", { noremap = false })
 map("v", "<C-_>", "gcc", { noremap = false })
 
-local pluginKeys = {}
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
   { key = { "o", "<2-LeftMouse>" }, action = "edit" },
@@ -201,16 +215,19 @@ pluginKeys.mapLSP = function(mapbuf)
 
   -- go to definition
   mapbuf('n', 'gd', ":Lspsaga goto_definition<CR>", opt)
-  -- mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  mapbuf('n', 'gt', ":Lspsaga peek_definition<CR>", opt)
+  mapbuf('n', 'gT', ":Lspsaga peek_type_definition<CR>", opt)
   -- mapbuf("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions({ initial_mode = 'normal', })<CR>", opt)
 
   -- hover
   mapbuf("n", "gh", ":Lspsaga hover_doc<cr>", opt)
   -- mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
 
+  mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
   -- references
-  mapbuf("n", "gr", ":Lspsaga finder<CR>", opt)
-  -- mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+  mapbuf("n", "gf", ":Lspsaga finder def+ref<CR>", opt)
+  mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 
   --[[
   Lspsaga 替换 gp, gj, gk
