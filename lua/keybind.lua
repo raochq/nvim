@@ -182,7 +182,10 @@ pluginKeys.nvimTreeList = { -- 打开文件或文件夹
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- 全局搜索
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
-
+map("n", "<F12>", ":Telescope lsp_type_definitions<CR>", opt)
+map("n", "<C-F12>", ":Telescope lsp_document_symbols<CR>", opt)
+map("n", "<S-F12>", ":Telescope lsp_implementations<CR>", opt)
+map("n", "<C-S-F12>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     -- 上下移动
@@ -191,8 +194,8 @@ pluginKeys.telescopeList = {
     ["<C-n>"] = "move_selection_next",
     ["<C-p>"] = "move_selection_previous",
     -- 历史记录
-    ["<Down>"] = "cycle_history_next",
-    ["<Up>"] = "cycle_history_prev",
+    ["<C-Down>"] = "cycle_history_next",
+    ["<C-Up>"] = "cycle_history_prev",
     -- 关闭窗口
     -- ["<esc>"] = actions.close,
     ["<C-c>"] = "close",
