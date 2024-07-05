@@ -106,6 +106,9 @@ map("t", "<leader>j", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<leader>k", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<leader>l", [[ <C-\><C-N><C-w>l ]], opt)
 --------------------------------------------------------------------
+-- 修改跳转
+map("n", "<C-[>", "<C-o>", opt)
+map("n", "<C-]>", "<C-i>", opt)
 -- 插件快捷键
 -- nvim-tree
 map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
@@ -182,10 +185,6 @@ pluginKeys.nvimTreeList = { -- 打开文件或文件夹
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- 全局搜索
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
-map("n", "<F12>", ":Telescope lsp_type_definitions<CR>", opt)
-map("n", "<C-F12>", ":Telescope lsp_document_symbols<CR>", opt)
-map("n", "<S-F12>", ":Telescope lsp_implementations<CR>", opt)
-map("n", "<C-S-F12>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     -- 上下移动
@@ -205,32 +204,40 @@ pluginKeys.telescopeList = {
   },
 }
 -- lsp 回调函数快捷键设置
-
-map("n", "gh", ":Lspsaga hover_doc<cr>", opt)
 pluginKeys.mapLSP = function(mapbuf)
   -- rename
-  mapbuf("n", "<leader>rn", ":Lspsaga rename<CR>", opt)
-  -- mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+  -- mapbuf("n", "<leader>rn", ":Lspsaga rename<CR>", opt)
+  mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
 
   -- code action
-  mapbuf("n", "<leader>ca", ":Lspsaga code_action<CR>", opt)
-  -- mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-
-  -- go to definition
-  mapbuf('n', 'gd', ":Lspsaga goto_definition<CR>", opt)
-  mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-  mapbuf('n', 'gt', ":Lspsaga peek_definition<CR>", opt)
-  mapbuf('n', 'gT', ":Lspsaga peek_type_definition<CR>", opt)
-  -- mapbuf("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions({ initial_mode = 'normal', })<CR>", opt)
+  -- mapbuf("n", "<leader>ca", ":Lspsaga code_action<CR>", opt)
+  mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 
   -- hover
-  mapbuf("n", "gh", ":Lspsaga hover_doc<cr>", opt)
-  -- mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+  -- mapbuf("n", "gh", ":Lspsaga hover_doc<cr>", opt)
+  mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
 
-  mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+  -- go to definition
+  -- mapbuf('n', 'gd', ":Lspsaga goto_definition<CR>", opt)
+  -- mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  mapbuf("n", "gd", ":Telescope lsp_definitions initial_mode=normal <CR>", opt)
+  mapbuf("n", "<F12>", ":Telescope lsp_type_definitions<CR>", opt)
+  -- mapbuf('n', 'gt', ":Lspsaga peek_definition<CR>", opt)
+  -- mapbuf('n', 'gT', ":Lspsaga peek_type_definition<CR>", opt)
+  -- mapbuf("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions({ initial_mode = 'normal', })<CR>", opt)
+
+
+  -- implementation
+  mapbuf("n", "<C-F12>", ":Telescope lsp_document_symbols<CR>", opt)
+  -- mapbuf("n", "<S-F12>", ":Telescope lsp_implementations<CR>", opt)
+  mapbuf("n", "<C-S-F12>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
+  mapbuf("n", "gi", ":Telescope lsp_implementations<CR>", opt)
+  -- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+
   -- references
-  mapbuf("n", "gf", ":Lspsaga finder def+ref<CR>", opt)
-  mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+  mapbuf("n", "gr", ":Telescope lsp_references<CR>", opt)
+  -- mapbuf("n", "gf", ":Lspsaga finder def+ref<CR>", opt)
+  -- mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 
   --[[
   Lspsaga 替换 gp, gj, gk
