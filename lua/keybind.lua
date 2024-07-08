@@ -69,26 +69,26 @@ map("n", "sh", ":sp<CR>", opt)
 map("n", "sc", "<C-w>c", opt)
 -- 关闭其他
 map("n", "so", "<C-w>o", opt) -- close others
--- alt + hjkl  窗口之间跳转
-map("n", "<A-h>", "<C-w>h", opt)
-map("n", "<A-j>", "<C-w>j", opt)
-map("n", "<A-k>", "<C-w>k", opt)
-map("n", "<A-l>", "<C-w>l", opt)
--- <alt> + 箭头 窗口之间跳转
-map("n", "<A-Left>", "<C-w>h", opt)
-map("n", "<A-Down>", "<C-w>j", opt)
-map("n", "<A-Up>", "<C-w>k", opt)
-map("n", "<A-Right>", "<C-w>l", opt)
+-- Ctrl + hjkl  窗口之间跳转
+map("n", "<C-h>", "<C-w>h", opt)
+map("n", "<C-j>", "<C-w>j", opt)
+map("n", "<C-k>", "<C-w>k", opt)
+map("n", "<C-l>", "<C-w>l", opt)
+-- <Ctrl> + 箭头 窗口之间跳转
+map("n", "<C-Left>", "<C-w>h", opt)
+map("n", "<C-Down>", "<C-w>j", opt)
+map("n", "<C-Up>", "<C-w>k", opt)
+map("n", "<C-Right>", "<C-w>l", opt)
 -- 左右比例控制
-map("n", "<C-A-Left>", ":vertical resize -2<CR>", opt)
-map("n", "<C-A-Right>", ":vertical resize +2<CR>", opt)
+map("n", "<S-C-A-Left>", ":vertical resize -2<CR>", opt)
+map("n", "<S-C-A-Right>", ":vertical resize +2<CR>", opt)
 map("n", "s,", ":vertical resize -10<CR>", opt)
 map("n", "s.", ":vertical resize +10<CR>", opt)
 -- 上下比例
 map("n", "sj", ":resize +10<CR>", opt)
 map("n", "sk", ":resize -10<CR>", opt)
-map("n", "<C-A-Down>", ":resize +2<CR>", opt)
-map("n", "<C-A-Up>", ":resize -2<CR>", opt)
+map("n", "<S-C-A-Down>", ":resize +2<CR>", opt)
+map("n", "<S-C-A-Up>", ":resize -2<CR>", opt)
 -- 相等比例
 map("n", "s=", "<C-w>=", opt)
 
@@ -97,28 +97,28 @@ map("n", "st", ":sp | terminal<CR>", opt)
 map("n", "stv", ":vsp | terminal<CR>", opt)
 -- Esc 回 Normal 模式
 map("t", "<Esc>", "<C-\\><C-n>", opt)
-map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
-map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
-map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
-map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
+map("t", "<C-h>", [[ <C-\><C-N><C-w>h ]], opt)
+map("t", "<C-j>", [[ <C-\><C-N><C-w>j ]], opt)
+map("t", "<C-k>", [[ <C-\><C-N><C-w>k ]], opt)
+map("t", "<C-l>", [[ <C-\><C-N><C-w>l ]], opt)
 map("t", "<leader>h", [[ <C-\><C-N><C-w>h ]], opt)
 map("t", "<leader>j", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<leader>k", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<leader>l", [[ <C-\><C-N><C-w>l ]], opt)
 --------------------------------------------------------------------
 -- 修改跳转
-map("n", "<C-[>", "<C-o>", opt)
-map("n", "<C-]>", "<C-i>", opt)
+map("n", "<C-A-Left>", "<C-o>", opt)
+map("n", "<C-A-Right>", "<C-i>", opt)
 -- 插件快捷键
 -- nvim-tree
 map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)
 map("n", "<leader>b", ":NvimTreeToggle<CR>", opt)
 -- bufferline
 -- 左右Tab切换
-map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<C-Left>", ":bprevious<CR>", opt)
-map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
-map("n", "<C-Right>", ":bnext<CR>", opt)
+map("n", "<C-S-Tab>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<A-Left>", ":bprevious<CR>", opt)
+map("n", "<C-Tab>", ":BufferLineCycleNext<CR>", opt)
+map("n", "<A-Right>", ":bnext<CR>", opt)
 -- "moll/vim-bbye" 关闭当前 buffer
 map("n", "<leader>bc", ":bdelete!<CR>", opt)
 map("n", "<C-w>", ":bdelete!<CR>", opt)
@@ -148,6 +148,7 @@ local pluginKeys = {}
 -- ctrl + /
 map("n", "<C-_>", "gcc", { noremap = false })
 map("v", "<C-_>", "gcc", { noremap = false })
+map("i", "<C-_>", "<ESC>gcc", { noremap = false })
 
 -- 列表快捷键
 pluginKeys.nvimTreeList = { -- 打开文件或文件夹
@@ -185,6 +186,7 @@ pluginKeys.nvimTreeList = { -- 打开文件或文件夹
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- 全局搜索
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+map("i", "<C-f>", "<ESC>:Telescope live_grep<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     -- 上下移动
@@ -200,7 +202,7 @@ pluginKeys.telescopeList = {
     ["<C-c>"] = "close",
     -- 预览窗口上下滚动
     ["<C-u>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down",
+    ["<C-d>"] = "preview_scrolling_down", 
   },
 }
 -- lsp 回调函数快捷键设置
@@ -221,7 +223,10 @@ pluginKeys.mapLSP = function(mapbuf)
   -- mapbuf('n', 'gd', ":Lspsaga goto_definition<CR>", opt)
   -- mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
   mapbuf("n", "gd", ":Telescope lsp_definitions initial_mode=normal <CR>", opt)
-  mapbuf("n", "<F12>", ":Telescope lsp_type_definitions<CR>", opt)
+  mapbuf("n", "<F12>", ":Telescope lsp_definitions initial_mode=normal <CR>", opt)
+  mapbuf("i", "<F12>", "<ESC>:Telescope lsp_definitions initial_mode=normal <CR>", opt)
+  mapbuf("n", "<S-F12>", ":Telescope lsp_type_definitions<CR>", opt)
+  mapbuf("i", "<S-F12>", "<ESC>:Telescope lsp_type_definitions<CR>", opt)
   -- mapbuf('n', 'gt', ":Lspsaga peek_definition<CR>", opt)
   -- mapbuf('n', 'gT', ":Lspsaga peek_type_definition<CR>", opt)
   -- mapbuf("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions({ initial_mode = 'normal', })<CR>", opt)
@@ -229,8 +234,10 @@ pluginKeys.mapLSP = function(mapbuf)
 
   -- implementation
   mapbuf("n", "<C-F12>", ":Telescope lsp_document_symbols<CR>", opt)
+  mapbuf("i", "<C-F12>", "<ESC>:Telescope lsp_document_symbols<CR>", opt)
   -- mapbuf("n", "<S-F12>", ":Telescope lsp_implementations<CR>", opt)
   mapbuf("n", "<C-S-F12>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
+  mapbuf("i", "<C-S-F12>", "<ESC>:Telescope lsp_dynamic_workspace_symbols<CR>", opt)
   mapbuf("n", "gi", ":Telescope lsp_implementations<CR>", opt)
   -- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
 
