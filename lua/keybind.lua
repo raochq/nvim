@@ -233,16 +233,18 @@ pluginKeys.mapLSP = function(mapbuf)
 
 
   -- implementation
-  mapbuf("n", "<C-F12>", ":Telescope lsp_document_symbols<CR>", opt)
-  mapbuf("i", "<C-F12>", "<ESC>:Telescope lsp_document_symbols<CR>", opt)
-  -- mapbuf("n", "<S-F12>", ":Telescope lsp_implementations<CR>", opt)
-  mapbuf("n", "<C-S-F12>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
-  mapbuf("i", "<C-S-F12>", "<ESC>:Telescope lsp_dynamic_workspace_symbols<CR>", opt)
+  mapbuf("n", "<C-S-o>", ":Telescope lsp_document_symbols<CR>", opt)
+  mapbuf("i", "<C-S-o>", "<ESC>:Telescope lsp_document_symbols<CR>", opt)
+  mapbuf("n", "<C-t>", ":Telescope lsp_dynamic_workspace_symbols<CR>", opt)
+  mapbuf("i", "<C-t>", "<ESC>:Telescope lsp_dynamic_workspace_symbols<CR>", opt)
+  mapbuf("n", "<A-F12>", ":Telescope lsp_implementations<CR>", opt)
   mapbuf("n", "gi", ":Telescope lsp_implementations<CR>", opt)
   -- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
 
   -- references
   mapbuf("n", "gr", ":Telescope lsp_references<CR>", opt)
+  mapbuf("n", "<C-F12>", ":Telescope lsp_references<CR>", opt)
+  mapbuf("i", "<C-F12>", "<ESC>:Telescope lsp_references<CR>", opt)
   -- mapbuf("n", "gf", ":Lspsaga finder def+ref<CR>", opt)
   -- mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
 
