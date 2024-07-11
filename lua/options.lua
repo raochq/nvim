@@ -26,3 +26,8 @@ vim.opt.incsearch = true -- search as characters are entered
 vim.opt.hlsearch = false -- do not highlight matches
 vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
+
+vim.o.guifont = "Fira Code,FiraMono Nerd Font,Sarasa Mono SC:h12" -- text below applies for VimScript
+
+-- neovide
+vim.g.neovide_cursor_vfx_mode = "railgun"
